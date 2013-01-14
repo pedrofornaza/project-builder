@@ -14,6 +14,10 @@ class Folder
 		}
 
 		$realpath = $path .DIRECTORY_SEPARATOR. $name;
+		if(is_dir($realpath)) {
+			throw new \RunTimeException("Directory {$name} already exists.");
+		}
+
 		mkdir($realpath);
 
 		$this->path = $path;
