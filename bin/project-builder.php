@@ -56,5 +56,8 @@ try {
 
 	ProjectBuilder\Output::outputString("Project {$namespace} is complete.");
 } catch (Exception $e) {
-	ProjectBuilder\Output::outputError(1, "Houston, we have a problem: ".$e->getMessage());
+	ProjectBuilder\Output::outputString(
+		"------------ Houston, we have a problem ------------". PHP_EOL
+		"--". $e->getMessage()
+	);
 }
