@@ -21,6 +21,10 @@ class File
 
 	public static function makeFileFromTemplate($template, $destiny, $name)
 	{
+		if (!is_writable($destiny)) {
+			throw new \RunTimeException("Directory {$destiny} is not writable.");
+		}
+
 		$template = $template .DIRECTORY_SEPARATOR. $name;
 		$destiny = $destiny .DIRECTORY_SEPARATOR. $name;
 
@@ -30,6 +34,10 @@ class File
 
 	public static function makeFileFromUrl($url, $destiny, $name)
 	{
+		if (!is_writable($destiny)) {
+			throw new \RunTimeException("Directory {$destiny} is not writable.");
+		}
+
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 

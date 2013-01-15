@@ -11,6 +11,8 @@ class Folder
 	{
 		if (!$path) {
 			throw new \InvalidArgumentException("The path {$path} is not valid.");
+		} else if (!is_writable($path)) {
+			throw new \RunTimeException("Directory {$name} is not writable.");
 		}
 
 		$realpath = $path .DIRECTORY_SEPARATOR. $name;
