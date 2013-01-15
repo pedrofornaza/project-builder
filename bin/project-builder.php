@@ -21,7 +21,7 @@ include SRC_FOLDER .DS. 'File.php';
 
 try {
 	ProjectBuilder\Output::outputString("Making root folder...");
-	$rootFolder = new ProjectBuilder\Folder($path, strtolower($namespace));
+	$rootFolder = new ProjectBuilder\Folder($path, $namespace);
 
 	$composerJson = ProjectBuilder\File::makeFileFromTemplate(TEMPLATE_FOLDER, $rootFolder->getPath(), 'composer.json');
 
