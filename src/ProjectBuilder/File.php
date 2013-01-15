@@ -5,21 +5,17 @@ namespace ProjectBuilder;
 class File
 {
 	private $name;
-	private $extension;
 	private $path;
-
-	private $resource;
 
 	public function __construct($path)
 	{
 		$path = realpath($path);
 		if (!$path) {
-			throw new \InvalidArgumentException("The path {$path} is not valid.");
+			throw new \InvalidArgumentException("The path {$path} is invalid or the file {$path} does not exists.");
 		}
 
 		$info = pathinfo($path);
 		$this->name = $info['filename'];
-		$this->extension = $info['extension'];
 		$this->path = $info['dirname'];
 	}
 
