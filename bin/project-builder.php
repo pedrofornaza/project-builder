@@ -58,6 +58,6 @@ try {
 } catch (Exception $e) {
 	ProjectBuilder\Output::outputString(
 		"------------ Houston, we have a problem ------------". PHP_EOL
-		"--". $e->getMessage()
+		"--". $e->getMessage();
 	);
 }
