@@ -24,12 +24,19 @@ try {
 	$rootFolder = new ProjectBuilder\Folder($path, $namespace);
 
 	$composerJson = ProjectBuilder\File::makeFileFromTemplate(TEMPLATE_FOLDER, $rootFolder->getPath(), 'composer.json');
+	$content = $composerJson->getContent();
+	$content = str_replace('$namespace', $namespace, $content);
+	$composerJson->setContent($content);
 
 
 	ProjectBuilder\Output::outputString("Making public folder...");
 	$publicFolder = new ProjectBuilder\Folder($rootFolder->getPath(), 'public');
 
 	$index = ProjectBuilder\File::makeFileFromTemplate(TEMPLATE_FOLDER, $publicFolder->getPath(), 'index.php');
+	$content = $index->getContent();
+	$content = str_replace('$namespace', $namespace, $content);
+	$index->setContent($content);
+
 	$htaccess = ProjectBuilder\File::makeFileFromTemplate(TEMPLATE_FOLDER, $publicFolder->getPath(), '.htaccess');
 
 
@@ -38,6 +45,9 @@ try {
 	$projectFolder = new ProjectBuilder\Folder($srcFolder->getPath(), $namespace);
 
 	$app = ProjectBuilder\File::makeFileFromTemplate(TEMPLATE_FOLDER, $projectFolder->getPath(), 'Application.php');
+	$content = $app->getContent();
+	$content = str_replace('$namespace', $namespace, $content);
+	$app->setContent($content);
 
 
 	ProjectBuilder\Output::outputString("Making tests folder...");
@@ -46,6 +56,9 @@ try {
 	$projectTestsFolder = new ProjectBuilder\Folder($srcTestsFolder->getPath(), $namespace);
 
 	$appTest = ProjectBuilder\File::makeFileFromTemplate(TEMPLATE_FOLDER, $projectTestsFolder->getPath(), 'ApplicationTest.php');
+	$content = $appTest->getContent();
+	$content = str_replace('$namespace', $namespace, $content);
+	$appTest->setContent($content);
 
 
 	ProjectBuilder\Output::outputString("Making bin folder...");

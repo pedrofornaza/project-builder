@@ -15,7 +15,7 @@ class File
 		}
 
 		$info = pathinfo($path);
-		$this->name = $info['filename'];
+		$this->name = $info['basename'];
 		$this->path = $info['dirname'];
 	}
 
@@ -47,5 +47,15 @@ class File
 		$destiny = $destiny .DIRECTORY_SEPARATOR. $name;
 		file_put_contents($destiny, $content);
 		return new File($destiny);
+	}
+
+	public function getContent()
+	{
+		return file_get_contents($this->path .DIRECTORY_SEPARATOR. $this->name);
+	}
+
+	public function setContent($content)
+	{
+		return file_put_contents($this->path .DIRECTORY_SEPARATOR. $this->name, $content);
 	}
 }
